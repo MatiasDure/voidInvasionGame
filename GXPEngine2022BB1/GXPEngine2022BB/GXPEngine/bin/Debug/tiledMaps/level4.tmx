@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="3">
+ <imagelayer id="3" name="jungle">
+  <image source="levelBackgrounds/backgroundLvl4.jpg" width="400" height="400"/>
+ </imagelayer>
+ <imagelayer id="7" name="wood" offsetx="8.00003" offsety="26.6667">
+  <image source="levelBackgrounds/wood.png" width="380" height="159"/>
+ </imagelayer>
+ <imagelayer id="4" name="Image Layer 2" offsetx="-13.3333" offsety="204.667">
+  <image source="../objectImgs/threeObjects.png" width="400" height="200"/>
+ </imagelayer>
+ <objectgroup id="2" name="Object Layer 1" offsetx="6.66667" offsety="5.99967">
+  <object id="1" x="49.1667" y="50.5" width="316.125" height="97.4763">
+   <text fontfamily="OCR A Extended" pixelsize="25" wrap="1" color="#7c4122" halign="center" valign="center">To be Continued...</text>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="Object Layer 2">
+  <object id="2" name="exit" type="Button" x="330" y="6" width="20" height="20">
+   <properties>
+    <property name="target" value="tiledMaps/mainMenu.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

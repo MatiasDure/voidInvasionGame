@@ -1,0 +1,12 @@
+{
+  "EXP": 37,
+  "LVL": 9,
+  "abilityCount": 26,
+  "movementSpeed": 204,
+  "jumpForce": 10.0,
+  "gravity": 0.5,
+  "shotCooldown": 1000,
+  "weakAbility": "bullets/weakAbility.png",
+  "normalAbility": "bullets/normalAbility.png",
+  "strongAbility": "bullets/strongAbility.png"
+}

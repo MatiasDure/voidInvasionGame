@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="15">
+ <tileset firstgid="1" name="gothicCity" tilewidth="16" tileheight="16" tilecount="726" columns="66">
+  <image source="tilesets/lvl2Tiles.png" width="1056" height="176"/>
+ </tileset>
+ <tileset firstgid="727" name="Environment1" tilewidth="16" tileheight="16" tilecount="868" columns="28">
+  <image source="tilesets/Environment1.png" width="457" height="500"/>
+ </tileset>
+ <tileset firstgid="1595" name="environment2" tilewidth="16" tileheight="16" tilecount="2109" columns="57">
+  <image source="tilesets/environment2.png" width="921" height="600"/>
+ </tileset>
+ <tileset firstgid="3704" name="lvl3Tiles" tilewidth="16" tileheight="16" tilecount="780" columns="52">
+  <image source="tilesets/lvl3Tiles.png" width="832" height="240"/>
+ </tileset>
+ <imagelayer id="8" name="background">
+  <image source="levelBackgrounds/backgroundMainMenu.png" width="400" height="400"/>
+ </imagelayer>
+ <layer id="1" name="Tile Layer 1" width="25" height="25">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1263,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2122,2123,2124,2125,2126,1951,1952,1953,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3968,3969,3970,
+2179,2180,2181,2182,2183,2008,2009,2010,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4020,4021,4022,
+0,0,2244,2245,2246,2247,2248,2249,0,0,0,0,0,161,162,163,3972,3973,3974,3975,0,0,0,0,4175,
+0,0,2301,2302,2303,2304,2305,2306,0,0,0,0,0,227,228,229,4024,4025,4026,4027,0,0,0,0,4175,
+1077,0,2358,2359,2360,2361,2362,2363,0,0,0,0,0,293,294,295,0,0,4078,4079,0,0,0,0,4175,
+1105,0,2415,2416,2417,2418,2419,2420,0,0,0,0,0,0,0,361,0,0,0,0,0,0,0,0,4175,
+1133,1077,2472,2473,2474,2475,2476,2477,0,0,0,0,0,0,0,427,0,0,0,0,0,0,0,0,4175,
+1133,1133,2529,2530,2531,2532,2533,2534,0,0,0,405,406,282,283,361,4192,4193,4201,4202,4207,4208,4213,4214,4175,
+1133,1133,1066,1066,1066,1066,1066,1066,267,268,269,471,472,348,349,427,4244,4245,4253,4254,4259,4260,4265,4266,4175,
+1094,1094,1094,1094,1094,1094,1094,1094,333,334,334,537,538,414,415,361,4296,4297,3901,3902,3903,3905,4317,4318,4175,
+1094,1094,1094,1094,1094,1094,1094,1094,267,465,466,334,334,480,481,361,4348,4349,3953,3954,3955,3957,4369,4370,4175,
+1094,1094,1094,1094,1094,1094,1094,1094,333,531,532,334,334,546,547,427,4400,4401,4005,4006,4007,4061,4421,4422,4175
+</data>
+ </layer>
+ <objectgroup id="2" name="buttons" offsetx="0.666667" offsety="0.666667">
+  <object id="5" name="titleName" x="43.1667" y="59.1667" width="101.333" height="20.3333">
+   <text wrap="1" color="#ffffff">Void Invaders</text>
+  </object>
+  <object id="13" name="buttonTutorial" type="Button" x="190" y="141.333" width="20" height="20">
+   <properties>
+    <property name="target" value="tiledMaps/level1.tmx"/>
+   </properties>
+  </object>
+  <object id="14" name="buttonStart" type="Button" x="190" y="220" width="20" height="20">
+   <properties>
+    <property name="target" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
