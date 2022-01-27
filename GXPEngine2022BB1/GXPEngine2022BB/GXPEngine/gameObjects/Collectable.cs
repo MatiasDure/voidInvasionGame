@@ -1,5 +1,4 @@
-﻿using System;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 public class Collectable:AnimationSprite
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using GXPEngine.Core;
 
 public class Bullet:Sprite
@@ -36,7 +34,6 @@ public class Bullet:Sprite
         VelocityY = pVelocityY; 
         Damage = pDamage;
         Owner = pOwner;
-        //collider.isTrigger = true;
         
         if(pOwner is Player)
         {

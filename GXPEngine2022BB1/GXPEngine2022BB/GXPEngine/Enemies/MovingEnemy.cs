@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 
 public class MovingEnemy:EnemyBehaviour

@@ -1,7 +1,7 @@
 {
-  "EXP": 37,
-  "LVL": 9,
-  "abilityCount": 26,
+  "EXP": 6,
+  "LVL": 1,
+  "abilityCount": 1,
   "movementSpeed": 204,
   "jumpForce": 10.0,
   "gravity": 0.5,

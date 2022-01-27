@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using GXPEngine.Core;
 using TiledMapParser;
 
@@ -53,7 +51,7 @@ public abstract class EnemyBehaviour:Entity
         if (entityImg.currentFrame == pShootFrame && !isAttacking)
         {
             isAttacking = true;
-            if (pShotSound != null) pShotSound.Play();//animationSounds[1].Play();
+            if (pShotSound != null) pShotSound.Play();
             parent.AddChild(new Bullet(pStringImgPath,pOwner,1,SpeedX,0,8,12));
         }
     }

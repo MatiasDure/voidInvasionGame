@@ -1,11 +1,5 @@
-using System;                                   // System contains a lot of default C# libraries 
 using System.Collections.Generic;
-using GXPEngine;                                // GXPEngine contains the engine
-
-//weird player movement bug (?)
-//add soundtrack
-//refactor code
-//animation for when the player lvls up
+using GXPEngine;                                
 
 public class MyGame : Game
 {
@@ -22,18 +16,6 @@ public class MyGame : Game
 		LoadLevel(startLevel);
 	}
 
-    // For every game object, Update is called every frame, by the engine:
-    void Update()
-	{
-		if (Input.GetKeyDown(Key.Q) && Input.GetKey(Key.LEFT_SHIFT))
-        {
-			LoadLevel(startLevel);
-        }
-		if (Input.GetKey(Key.L)) Console.WriteLine(GetDiagnostics());
-        if (Input.GetKey(Key.F)) Console.WriteLine(currentFps);	
-	}
-
-	// Main() is the first method that's called when the program is run
 	static void Main()							
 	{
 		// Create a "MyGame" and start it
@@ -56,7 +38,6 @@ public class MyGame : Game
 			AddChild(new Level(nextLevel));
 			soundToPlay = nextLevel == "tiledMaps/mainMenu.tmx" ? soundtrack[0]:soundtrack[1];
 			soundtrackChannel = soundToPlay.Play();
-            Console.WriteLine(soundToPlay.ToString());
 			nextLevel = null;
         }
     }

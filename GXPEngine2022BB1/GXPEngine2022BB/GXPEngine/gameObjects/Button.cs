@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 
 public class Button : Sprite
 {
-
     string target;
     Sprite[] buttonImgs;
     int img;
@@ -14,7 +11,6 @@ public class Button : Sprite
     {
         buttonImgs = new Sprite[] { new Sprite("buttonImgs/playButton.png"), new Sprite("buttonImgs/QuitButton.png") };
         alpha = 0;
-        //SetScaleXY(2,2);
         if (obj != null) target = obj.GetStringProperty("target");
         img = target == "tiledMaps/level1.tmx" ? 0 : 1;
         if (target == "tiledMaps/mainMenu.tmx") buttonImgs[img].SetScaleXY(.5f,.5f);

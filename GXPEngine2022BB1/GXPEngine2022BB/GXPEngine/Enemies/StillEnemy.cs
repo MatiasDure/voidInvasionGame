@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 
 public class StillEnemy : EnemyBehaviour
@@ -15,8 +13,7 @@ public class StillEnemy : EnemyBehaviour
     {
         CheckStatus();
         ManageState(0,true,16,5);
-        if(!isDead)entityImg.Animate(animationSpeed);
-        
+        if(!isDead)entityImg.Animate(animationSpeed);   
     }
     protected override void Initialize(TiledObject obj = null)
     {

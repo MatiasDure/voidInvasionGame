@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 
 //class for player and enemy to inherit to avoid code repetition
@@ -29,7 +27,7 @@ public abstract class Entity : Sprite
     public Entity(string pAnimationImgPath, int pCol, int pRow, string imgPath = "objectImgs/hitbox.jpg") :base(imgPath)
     {
         entityImg = new AnimationSprite(pAnimationImgPath,pCol,pRow,-1,false,false);
-        //alpha = 0;
+        alpha = 0;
     }
 
     virtual protected bool ShotCoolDown()

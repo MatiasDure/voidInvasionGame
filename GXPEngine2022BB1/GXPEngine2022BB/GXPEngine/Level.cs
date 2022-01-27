@@ -22,7 +22,6 @@ public class Level: GameObject
         switch(currentLevelName)
         {
             case "tiledMaps/mainMenu.tmx":
-                Console.WriteLine("Main menu loaded");
                 loader.LoadImageLayers();
                 loader.LoadTileLayers(0);
                 loader.autoInstance = true;
@@ -31,7 +30,6 @@ public class Level: GameObject
                 break;
 
             case "tiledMaps/level1.tmx":
-                Console.WriteLine("Level 1 loaded");
                 currentLvl = 1;
                 loader.addColliders = false;
                 loader.LoadImageLayers(); //sky
@@ -58,7 +56,6 @@ public class Level: GameObject
                 break;
 
             case "tiledMaps/level2.tmx":
-                Console.WriteLine("Level 2 loaded");
                 currentLvl = 2;
                 loader.addColliders = false;
                 loader.LoadImageLayers(); //sky
@@ -80,7 +77,6 @@ public class Level: GameObject
                 break;
 
             case "tiledMaps/level3.tmx":
-                Console.WriteLine("Level 3 loaded");
                 currentLvl = 3;
                 loader.addColliders = false;
                 loader.LoadImageLayers(); //Cellar
@@ -98,7 +94,6 @@ public class Level: GameObject
                 break;
             
             case "tiledMaps/level4.tmx":
-                Console.WriteLine("Level 4 loaded");
                 currentLvl = 4;
                 loader.addColliders = false;
                 loader.LoadImageLayers();
@@ -131,7 +126,6 @@ public class Level: GameObject
         {
             x = game.width - boundary - target.x;
         }
-        //x = game.width / 2 - target.x;
     }
 
     void Update()

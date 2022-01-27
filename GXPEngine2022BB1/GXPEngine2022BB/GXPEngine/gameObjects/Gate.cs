@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using GXPEngine;
+﻿using GXPEngine;
 using TiledMapParser;
 
 public class Gate:Sprite
@@ -17,6 +15,7 @@ public class Gate:Sprite
 
     void Initialize(TiledObject obj = null)
     {
+        alpha = 0;
         SetOrigin(width/2,height/2);
         gateAnimation = new AnimationSprite("objectImgs/portal.png", 4, 1,-1,false,false);
         gateAnimation.SetOrigin(gateAnimation.width,gateAnimation.height/2);

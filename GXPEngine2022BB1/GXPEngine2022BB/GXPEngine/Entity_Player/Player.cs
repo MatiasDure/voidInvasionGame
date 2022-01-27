@@ -164,9 +164,8 @@ public class Player : Entity //Inherits from Entity class which was created to a
         //regulates velocity depending on the frame rates 
         //ex: 204 (pixels/second) * 16 (60fps) / 1000 (1 sec) =  3,3 pixels per frame.
         //ex: If frameRate is 30, then it would be 204 * 32 (double previous deltaTime) / 1000 = 6,5 pixels per frame.
-        Console.WriteLine(velocityX);
         velocityX = velocityX * deltaTimeClamp / 1000;
-        //Console.WriteLine(deltaTimeClamp);
+
         isMoving = Math.Abs(velocityX) > 0.1f;
         if (MoveUntilCollision(velocityX, 0) != null) isMoving = false;
 
