@@ -30,6 +30,7 @@ public class Bullet:Sprite
     //runs once when object is instantiated 
     void Initialize(GameObject pOwner, int pDamage, float pVelocityX, float pVelocityY = 0, float pOffsetX = 0, float pOffsetY = 0)
     {
+        collider.isTrigger = pOwner is StillEnemy;
         VelocityX = pVelocityX;
         VelocityY = pVelocityY; 
         Damage = pDamage;

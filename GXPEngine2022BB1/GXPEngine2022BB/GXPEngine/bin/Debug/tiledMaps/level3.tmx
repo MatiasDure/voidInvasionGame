@@ -67,9 +67,9 @@
  <objectgroup id="4" name="Objects Layer">
   <object id="1" name="character" type="Player" x="40.5" y="303.5" width="20" height="26"/>
   <object id="3" name="shooter" type="StillEnemy" x="565" y="264.5" width="20" height="20"/>
-  <object id="4" name="mover" type="MovingEnemy" x="446.5" y="186.5" width="20" height="20">
+  <object id="4" name="mover" type="MovingEnemy" x="565.5" y="186.5" width="20" height="20">
    <properties>
-    <property name="startingPositionX" type="float" value="446.5"/>
+    <property name="startingPositionX" type="float" value="224"/>
    </properties>
   </object>
   <object id="5" name="obstacle" type="ObstacleEnemy" x="785.5" y="356" width="30" height="30"/>
@@ -104,7 +104,7 @@
   <object id="19" name="hint" type="Reader" x="1791" y="281" width="20" height="20">
    <properties>
     <property name="text" value="Hint: Have you ridden a bullet"/>
-    <property name="text2" value=" before?"/>
+    <property name="text2" value=" before? Try the S key (lvl 5)"/>
    </properties>
   </object>
   <object id="20" name="gate" type="Gate" x="3022" y="273.5" width="20" height="40">
