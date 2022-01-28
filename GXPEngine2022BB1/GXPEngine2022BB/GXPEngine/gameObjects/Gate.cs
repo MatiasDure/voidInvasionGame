@@ -4,7 +4,7 @@ using TiledMapParser;
 public class Gate:Sprite
 {
     string _target;
-    public string Target { get => _target; set => _target = value; }
+    string Target { get => _target; set => _target = value; }
 
     AnimationSprite gateAnimation;
 
@@ -12,7 +12,7 @@ public class Gate:Sprite
     {
         Initialize(obj);
     }
-
+    
     void Initialize(TiledObject obj = null)
     {
         alpha = 0;
@@ -34,9 +34,10 @@ public class Gate:Sprite
     }
     void OnCollision(GameObject other)
     {
+        //saves player stats and loads next level
         if (other is Player p)
         {
-            p.Save();
+            p.Save(); 
             ((MyGame)game).LoadLevel(Target);
         } 
     }

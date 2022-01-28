@@ -326,7 +326,11 @@
     <property name="text2" value="You grab them by hovering over."/>
    </properties>
   </object>
-  <object id="40" name="collectable" type="Collectable" x="1025" y="172.5" width="30" height="30"/>
+  <object id="40" name="collectable" type="Collectable" x="1025" y="172.5" width="30" height="30">
+   <properties>
+    <property name="amountBullets" type="int" value="20"/>
+   </properties>
+  </object>
   <object id="41" name="HowToShoot" type="Reader" x="1175.5" y="352" width="20" height="20">
    <properties>
     <property name="text" value="You shoot with A-S-D. Not all"/>
@@ -349,7 +353,7 @@
   <object id="46" name="collectable" type="Collectable" x="1664.5" y="123" width="30" height="30"/>
   <object id="49" name="Saw" type="ObstacleEnemy" x="2881.5" y="291" width="40" height="40">
    <properties>
-    <property name="speedY" type="float" value="2.5"/>
+    <property name="speedY" type="float" value="4"/>
    </properties>
   </object>
  </objectgroup>

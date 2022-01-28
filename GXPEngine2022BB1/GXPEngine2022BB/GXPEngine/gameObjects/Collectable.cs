@@ -9,7 +9,7 @@ public class Collectable:AnimationSprite
     public Collectable(TiledObject obj=null):base("objectImgs/collectable.png",23,1)
     {
         collectedSound = new Sound("sounds/collectingItem.wav");
-        if (obj != null) amountBullets = obj.GetIntProperty("amountBullets",Utils.Random(1,20));
+        if (obj != null) amountBullets = obj.GetIntProperty("amountBullets",Utils.Random(5,15));
         collider.isTrigger = true;
         SetCycle(6,17);
     }
@@ -19,6 +19,9 @@ public class Collectable:AnimationSprite
         if(currentFrame == 5) LateDestroy();
         Animate(ANIMATION_SPEED);
     }
+    /// <summary>
+    /// When this method is called it sets the collected animation and the grabbed variable to true.
+    /// </summary>
     public void Grab()
     {
         if(!grabbed)
@@ -28,6 +31,8 @@ public class Collectable:AnimationSprite
             grabbed = true;
         }   
     }
+
+    /// <returns>An amount of bullets</returns>
     public int GiveBullets()
     {
         if(grabbed) return 0;

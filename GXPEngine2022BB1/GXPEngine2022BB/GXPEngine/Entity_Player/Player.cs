@@ -38,6 +38,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
     bool mirror;
     bool isMoving;
     bool isInjured;
+    bool gameSaved;
 
     //json object to save player's properties
     JObject playerJson;
@@ -55,7 +56,6 @@ public class Player : Entity //Inherits from Entity class which was created to a
     {
         animationSpeed = 0.25f;
 
-        if (Input.GetMouseButtonDown(0)) Console.WriteLine(Lvl); ; 
         CheckSave();
         CheckStatus();
         if (isDead)
@@ -108,8 +108,12 @@ public class Player : Entity //Inherits from Entity class which was created to a
             animationSounds[i] = new Sound(soundFile, false, false);
         }
 
-        //reading json file
-        playerJson = JObject.Parse(File.ReadAllText(jsonPath));
+        try
+        {
+            //reading json file
+            playerJson = JObject.Parse(File.ReadAllText(jsonPath));
+        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
 
         //setting origin and scaling character sprite
         entityImg.SetOrigin(entityImg.width / 2 + 1, entityImg.height * 0.78f);
@@ -134,7 +138,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
         if (!isJumping && Input.GetKey(Key.UP))
         {
             velocityY -= jumpForce;
-            animationSounds[3].Play();
+            try { animationSounds[3].Play(); } catch (Exception ex) { Console.WriteLine(ex.Message);}
             isJumping = true;
         }
     }
@@ -174,7 +178,6 @@ public class Player : Entity //Inherits from Entity class which was created to a
     {
         if (Damage != 0 && entityImg.currentFrame == pShootFrame)
         {
-            Console.WriteLine("shot fired");
             if (pShotSound != null) pShotSound.Play();
             parent.AddChild(new Bullet(pImgPath, this, Damage, mirror ? -SpeedX : SpeedX,0));
             _abilityCount--;
@@ -187,35 +190,42 @@ public class Player : Entity //Inherits from Entity class which was created to a
     {
         //returns if there are no abilities left or no input keys for attacking are pressed
         if (_abilityCount < 1 || isAttacking || (!Input.GetKey(Key.A) && !Input.GetKey(Key.S) && !Input.GetKey(Key.D))) return;
+        //returns if the trying to fire blocked abilities
         if ( (Lvl < 3 && Input.GetKey(Key.S)) || (Lvl < 5 && Input.GetKey(Key.D)) ) return;
-        Console.WriteLine("Prepare to shoot");
-        if (Input.GetKey(Key.A))
+
+        try
         {
-            currentAbilityPath = weakAbility;
-            Damage = 5;
-            shootFrame = 3; //frame when bullet will appear
-            SpeedX = 7;
-            entityImg.SetCycle(0, 10); //weak attack animation
-            currentAbilitySound = animationSounds[0]; //attack SFX
+
+            if (Input.GetKey(Key.A))
+            {
+                currentAbilityPath = weakAbility;
+                Damage = 5;
+                shootFrame = 3; //frame when bullet will appear
+                SpeedX = 7;
+                entityImg.SetCycle(0, 10); //weak attack animation
+                currentAbilitySound = animationSounds[0]; //attack SFX
+            }
+            else if (Lvl > 2 && Input.GetKey(Key.S))
+            {
+                currentAbilityPath = normalAbility;
+                Damage = 10;
+                shootFrame = 22; //frame when bullet will appear
+                SpeedX = 5;
+                entityImg.SetCycle(18, 11); //normal attack animation
+                currentAbilitySound = animationSounds[1]; //attack SFX
+            }
+            else if (Lvl > 4 && Input.GetKey(Key.D))
+            {
+                currentAbilityPath = strongAbility;
+                Damage = 15;
+                shootFrame = 33; //frame when bullet will appear
+                SpeedX = 2f;
+                entityImg.SetCycle(29, 10); //strong attack animation
+                currentAbilitySound = animationSounds[2]; //attack SFX
+            }
+
         }
-        else if (Lvl > 2 && Input.GetKey(Key.S))
-        {
-            currentAbilityPath = normalAbility;
-            Damage = 10;
-            shootFrame = 22; //frame when bullet will appear
-            SpeedX = 5;
-            entityImg.SetCycle(18, 11); //normal attack animation
-            currentAbilitySound = animationSounds[1]; //attack SFX
-        }
-        else if (Lvl > 4 && Input.GetKey(Key.D))
-        {
-            currentAbilityPath = strongAbility;
-            Damage = 15;
-            shootFrame = 33; //frame when bullet will appear
-            SpeedX = 2f;
-            entityImg.SetCycle(29, 10); //strong attack animation
-            currentAbilitySound = animationSounds[2]; //attack SFX
-        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
 
         if(currentAbilityPath != "") isAttacking = true;
     }
@@ -318,11 +328,13 @@ public class Player : Entity //Inherits from Entity class which was created to a
     {
         return (lastTimeHit < Time.time);
     }
+
+    //To manually save the game
     void CheckSave()
     {
-        if (Input.GetKey(Key.ONE))
+        if (Input.GetKey(Key.ONE) && !gameSaved)
         {
-            Console.WriteLine("Game Saved");
+            gameSaved = true;
             Save();
         }
     }
@@ -337,8 +349,9 @@ public class Player : Entity //Inherits from Entity class which was created to a
 
             File.WriteAllText(jsonPath, playerJson.ToString());
             Console.WriteLine("Game Saved!");
+            gameSaved = false;
         }
-        catch (Exception) { Console.WriteLine("Error while saving! Game could not be saved."); }
+        catch (Exception) { Console.WriteLine("Error while saving! Game was not saved properly."); }
     }
     void Load()
     {
@@ -358,6 +371,6 @@ public class Player : Entity //Inherits from Entity class which was created to a
             normalAbility = (string)playerJson["normalAbility"];
             strongAbility = (string)playerJson["strongAbility"];
         }
-        catch (Exception) { Console.WriteLine("Error while loading! Game could not be saved."); }
+        catch (Exception) { Console.WriteLine("Error while loading! Game was not loaded properly."); }
     }
 }

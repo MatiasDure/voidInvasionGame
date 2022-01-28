@@ -19,9 +19,15 @@ public class MyGame : Game
 	static void Main()							
 	{
 		// Create a "MyGame" and start it
+		
 		MyGame game = new MyGame();
 		game.Start();
 					
+	}
+
+	void Update()
+    {
+		if (Input.GetKeyDown(Key.LEFT_SHIFT)) LoadLevel(startLevel);
 	}
 	public void LoadLevel(string pLevel)
 	{

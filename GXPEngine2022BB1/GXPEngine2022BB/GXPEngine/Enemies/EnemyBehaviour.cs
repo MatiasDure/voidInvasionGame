@@ -126,7 +126,7 @@ public abstract class EnemyBehaviour:Entity
     {
         if (!isDead)
         {
-            SetCollisionOff(); //I created this method in the Sprite class of the GxP engine, which turns collisions "off" by making the width and height 0
+            SetCollisionOff(); //Customized method in the gxp engine's Sprite class which turn collisions "off" by making the width and height 0
             entityImg.alpha = 0; //set the animationsprite of the enemy transparent to make place for the explosion animation
             isDead = true;
             if(pDeathSound >= 0) animationSounds[pDeathSound].Play(); //enemy death sound

@@ -89,6 +89,8 @@
   <object id="15" name="boss mover" type="MovingEnemy" x="2800.5" y="251.5" width="50" height="50">
    <properties>
     <property name="distanceToAttack" type="int" value="200"/>
+    <property name="hp" type="int" value="60"/>
+    <property name="speedX" type="float" value="0"/>
     <property name="startingPositionX" type="float" value="2800.5"/>
    </properties>
   </object>
