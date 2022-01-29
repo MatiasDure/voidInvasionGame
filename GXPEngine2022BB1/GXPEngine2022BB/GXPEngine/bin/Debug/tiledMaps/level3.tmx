@@ -106,7 +106,7 @@
   <object id="19" name="hint" type="Reader" x="1791" y="281" width="20" height="20">
    <properties>
     <property name="text" value="Hint: Have you ridden a bullet"/>
-    <property name="text2" value=" before? Try the S key (lvl 5)"/>
+    <property name="text2" value=" before? Try the D key (lvl 5)"/>
    </properties>
   </object>
   <object id="20" name="gate" type="Gate" x="3022" y="273.5" width="20" height="40">
