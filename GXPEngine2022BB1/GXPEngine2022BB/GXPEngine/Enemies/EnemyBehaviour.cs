@@ -72,13 +72,12 @@ public abstract class EnemyBehaviour:Entity
             entityImg.Mirror(true, false);
         }
 
-        MoveUntilCollision(0, velocityY);
+        Collision moverColsY = MoveUntilCollision(0, velocityY);
+        if (moverColsY != null && moverColsY.other is Player) y += velocityY;
 
-        Collision moverCols = MoveUntilCollision(velocityX, 0);
-        if (moverCols != null && moverCols.other is Player)
-        {
-            x += velocityX;
-        }  
+        Collision moverColsX = MoveUntilCollision(velocityX, 0);
+        if (moverColsX != null && moverColsX.other is Player) x += velocityX;
+ 
     } 
 
     //checks enemy's hp (for all enemies)
