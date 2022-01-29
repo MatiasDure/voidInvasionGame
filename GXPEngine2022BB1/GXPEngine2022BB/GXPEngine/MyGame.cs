@@ -3,7 +3,7 @@ using GXPEngine;
 
 public class MyGame : Game
 {
-	string startLevel = "tiledMaps/level3.tmx";
+	string startLevel = "tiledMaps/mainMenu.tmx";
 	string nextLevel = null;
 	Sound[] soundtrack;
 	SoundChannel soundtrackChannel;
