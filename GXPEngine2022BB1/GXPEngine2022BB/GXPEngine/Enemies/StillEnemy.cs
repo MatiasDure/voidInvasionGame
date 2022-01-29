@@ -18,7 +18,6 @@ public class StillEnemy : EnemyBehaviour
     protected override void Initialize(TiledObject obj = null)
     {
         bulletImg = "bullets/enemyBullet.png";
-        collider.isTrigger = true;
         animationSounds[1] = new Sound("sounds/ping.wav");
 
         //configure from tiles

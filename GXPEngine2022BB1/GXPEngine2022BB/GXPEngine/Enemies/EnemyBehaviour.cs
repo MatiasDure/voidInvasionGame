@@ -25,6 +25,7 @@ public abstract class EnemyBehaviour:Entity
 
     protected override void Initialize(TiledObject obj = null)
     {
+        
         if (obj != null)
         {
             Hp = obj.GetIntProperty("hp", 30);
@@ -73,10 +74,8 @@ public abstract class EnemyBehaviour:Entity
         }
 
         Collision moverColsY = MoveUntilCollision(0, velocityY);
-        if (moverColsY != null && moverColsY.other is Player) y += velocityY;
-
         Collision moverColsX = MoveUntilCollision(velocityX, 0);
-        if (moverColsX != null && moverColsX.other is Player) x += velocityX;
+
  
     } 
 

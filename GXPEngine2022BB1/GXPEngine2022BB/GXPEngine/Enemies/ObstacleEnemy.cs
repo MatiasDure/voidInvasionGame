@@ -14,6 +14,7 @@ public class ObstacleEnemy : EnemyBehaviour
     protected override void Initialize(TiledObject obj = null)
     {
         base.Initialize(obj);
+        collider.isTrigger = false;
         if(obj != null) SpeedY = obj.GetFloatProperty("speedY",2f);
     }
 

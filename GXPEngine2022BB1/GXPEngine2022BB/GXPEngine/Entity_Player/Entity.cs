@@ -28,6 +28,7 @@ public abstract class Entity : Sprite
     {
         entityImg = new AnimationSprite(pAnimationImgPath,pCol,pRow,-1,false,false);
         alpha = 0;
+        collider.isTrigger = true;
     }
 
     virtual protected bool ShotCoolDown()

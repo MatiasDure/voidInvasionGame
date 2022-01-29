@@ -69,7 +69,8 @@
   <object id="3" name="shooter" type="StillEnemy" x="565" y="264.5" width="20" height="20"/>
   <object id="4" name="mover" type="MovingEnemy" x="565.5" y="186.5" width="20" height="20">
    <properties>
-    <property name="startingPositionX" type="float" value="224"/>
+    <property name="speedX" type="float" value="1.4"/>
+    <property name="startingPositionX" type="float" value="180"/>
    </properties>
   </object>
   <object id="5" name="obstacle" type="ObstacleEnemy" x="785.5" y="356" width="30" height="30"/>
@@ -86,12 +87,12 @@
     <property name="startingPositionX" type="float" value="2002"/>
    </properties>
   </object>
-  <object id="15" name="boss mover" type="MovingEnemy" x="2800.5" y="236.833" width="80" height="80">
+  <object id="15" name="boss mover" type="MovingEnemy" x="2800.5" y="210" width="80" height="80">
    <properties>
     <property name="damage" type="int" value="2"/>
     <property name="distanceToAttack" type="int" value="200"/>
-    <property name="hp" type="int" value="60"/>
-    <property name="speedX" type="float" value="1"/>
+    <property name="hp" type="int" value="100"/>
+    <property name="speedX" type="float" value="0.8"/>
     <property name="startingPositionX" type="float" value="2800.5"/>
    </properties>
   </object>

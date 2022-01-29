@@ -28,7 +28,6 @@ public class MovingEnemy:EnemyBehaviour
             distanceToAttack = obj.GetIntProperty("distanceToAttack",150);
         }
 
-        collider.isTrigger = true; //Collider still exists, but makes MoveUntilCollision() method be able to ignore it 
         animationSounds[1] = new Sound("sounds/angryPig.mp3");
         entityImg.scaleY = 1.5f;
     }
