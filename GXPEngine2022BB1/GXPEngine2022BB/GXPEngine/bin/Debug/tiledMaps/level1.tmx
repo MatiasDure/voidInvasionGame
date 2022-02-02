@@ -356,7 +356,6 @@
     <property name="speedY" type="float" value="4"/>
    </properties>
   </object>
-  <object id="50" name="Delete after Try" type="StillEnemy" x="312.5" y="361" width="20" height="20"/>
  </objectgroup>
  <objectgroup id="16" name="Button Layer">
   <object id="24" name="MainMenu" type="Button" x="330" y="6" width="20" height="20">
