@@ -11,6 +11,8 @@ public abstract class EnemyBehaviour:Entity
 
     protected int _giveExp;
     public int GiveExp { get => _giveExp; set => _giveExp = value; }
+
+    EasyDraw healthBar;
     
     //enemy states (for all enemies)
     protected enum State
@@ -36,6 +38,12 @@ public abstract class EnemyBehaviour:Entity
         }
         entityImg.SetOrigin(entityImg.width / 2, entityImg.height / 2);
         AddChild(entityImg);
+
+        healthBar = new EasyDraw(80,80,false);
+        healthBar.SetOrigin(width / 2, height / 2);
+        healthBar.SetXY(0,-46);
+        healthBar.TextSize(14);
+        AddChild(healthBar);
     }
 
     //constructor for abstract class
@@ -76,7 +84,6 @@ public abstract class EnemyBehaviour:Entity
         Collision moverColsY = MoveUntilCollision(0, velocityY);
         Collision moverColsX = MoveUntilCollision(velocityX, 0);
 
- 
     } 
 
     //checks enemy's hp (for all enemies)
@@ -86,6 +93,13 @@ public abstract class EnemyBehaviour:Entity
         {
             ModifyState(State.DIE);
         }
+    }
+
+    //health UI for all enemies
+    protected void UpdateHealthUI()
+    {
+        healthBar.ClearTransparent();
+        healthBar.Text(""+Hp,0,healthBar.height/2);
     }
 
     //Manages the different states (for all enemies). 

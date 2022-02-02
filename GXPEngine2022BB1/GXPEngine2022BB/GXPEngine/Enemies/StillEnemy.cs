@@ -11,6 +11,7 @@ public class StillEnemy : EnemyBehaviour
     }
     void Update()
     {
+        UpdateHealthUI();
         CheckStatus();
         ManageState(0,true,16,5);
         if(!isDead)entityImg.Animate(animationSpeed);   

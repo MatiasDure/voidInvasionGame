@@ -281,7 +281,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
         //collision with bullet
         if (other is Bullet bullet && bullet.Owner is StillEnemy)
         {
-            TakeDamage(bullet.Damage);
+            //TakeDamage(bullet.Damage);
             bullet.SetCollided();
         }
         //collision with moverEnemy

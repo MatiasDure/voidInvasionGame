@@ -20,6 +20,7 @@ public class ObstacleEnemy : EnemyBehaviour
 
     void Update()
     {
+        UpdateHealthUI();
         CheckStatus();
         ManageState(0);
         if (!isDead) entityImg.Animate(animationSpeed);
