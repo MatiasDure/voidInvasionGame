@@ -25,6 +25,7 @@ public class MyGame : Game
 	void Update()
     {
 		if (Input.GetKeyDown(Key.LEFT_SHIFT)) LoadLevel(startLevel);
+        if (Input.GetKeyDown(Key.F)) System.Console.WriteLine(currentFps);
 	}
 	public void LoadLevel(string pLevel)
 	{

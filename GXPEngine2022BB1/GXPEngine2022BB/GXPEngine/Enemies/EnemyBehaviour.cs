@@ -50,6 +50,7 @@ public abstract class EnemyBehaviour:Entity
     public EnemyBehaviour(string pAnimationImgPath, int pCol, int pRow):base(pAnimationImgPath,pCol,pRow)
     {
         enemyExplode = new AnimationSprite("particleFX/entityExplode.png", 8, 1, -1, false);
+        enemyExplode.collider.isTrigger = true;
         animationSounds = new Sound[2];
         animationSounds[0] = new Sound("sounds/enemyDeathSound.mp3");
     }
