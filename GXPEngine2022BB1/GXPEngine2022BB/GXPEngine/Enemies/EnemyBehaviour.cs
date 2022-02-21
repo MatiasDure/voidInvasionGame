@@ -2,17 +2,23 @@
 using GXPEngine.Core;
 using TiledMapParser;
 
+//------------------------EnemyBehaviour-----------------------------------//
+// Inherits from Entity
+// Contains all the states of every enemy in the game
+// Contains behaviours for different enemy types like shooters and movers
+// Contains shared attributes to reduce code repetition
+// Can only be inherited
+//------------------------------------------------------------------------//
+
 public abstract class EnemyBehaviour:Entity
 {
-    GameObject _target;
-    public GameObject Target { get => _target; set => _target = value; }
+    public GameObject target; //sets the target which triggers attack
 
-    protected AnimationSprite enemyExplode;
+    protected AnimationSprite enemyExplode; //For particle effect
 
-    protected int _giveExp;
-    public int GiveExp { get => _giveExp; set => _giveExp = value; }
+    protected int giveExp; //For player
 
-    EasyDraw healthBar;
+    EasyDraw healthBar; //Health ui
     
     //enemy states (for all enemies)
     protected enum State
@@ -25,6 +31,7 @@ public abstract class EnemyBehaviour:Entity
 
     protected State _state;
 
+    //To initialize enemy objects
     protected override void Initialize(TiledObject obj = null)
     {
         
@@ -32,17 +39,16 @@ public abstract class EnemyBehaviour:Entity
         {
             Hp = obj.GetIntProperty("hp", 30);
             Damage = obj.GetIntProperty("damage", 1);
-            GiveExp = obj.GetIntProperty("giveExp", 1);
+            giveExp = obj.GetIntProperty("giveExp", 1);
             animationSpeed = obj.GetFloatProperty("animationSpeed", .22f);
             SpeedX = obj.GetFloatProperty("speedX", 2f);
         }
         entityImg.SetOrigin(entityImg.width / 2, entityImg.height / 2);
         AddChild(entityImg);
 
-        healthBar = new EasyDraw(80,80,false);
+        healthBar = new EasyDraw(Hp,6,false);
         healthBar.SetOrigin(width / 2, height / 2);
-        healthBar.SetXY(0,-46);
-        healthBar.TextSize(14);
+        healthBar.SetXY(0,-15);
         AddChild(healthBar);
     }
 
@@ -84,7 +90,6 @@ public abstract class EnemyBehaviour:Entity
 
         Collision moverColsY = MoveUntilCollision(0, velocityY);
         Collision moverColsX = MoveUntilCollision(velocityX, 0);
-
     } 
 
     //checks enemy's hp (for all enemies)
@@ -99,8 +104,9 @@ public abstract class EnemyBehaviour:Entity
     //health UI for all enemies
     protected void UpdateHealthUI()
     {
-        healthBar.ClearTransparent();
-        healthBar.Text(""+Hp,0,healthBar.height/2);
+        healthBar.Clear(255, 0, 0);
+        healthBar.Fill(0, 255, 0);
+        healthBar.Rect(0, 0, Hp*2, 12);
     }
 
     //Manages the different states (for all enemies). 
@@ -110,6 +116,7 @@ public abstract class EnemyBehaviour:Entity
     //parameter name <pHasInjuredAnim> is for in case the enemy does not have an injured animation
     virtual protected void ManageState(int pDeathSound = -1, bool pHasInjuredAnim=false ,int pStartFrame=0, int pFrameCount=0) 
     {
+        if (target == null) return;
         switch (_state)
         {
             case State.IDLE:
@@ -140,9 +147,9 @@ public abstract class EnemyBehaviour:Entity
         if (!isDead)
         {
             SetCollisionOff(); //Customized method in the gxp engine's Sprite class which turn collisions "off" by making the width and height 0
-            entityImg.alpha = 0; //set the animationsprite of the enemy transparent to make place for the explosion animation
+            entityImg.alpha = 0; 
             isDead = true;
-            if(pDeathSound >= 0) animationSounds[pDeathSound].Play(); //enemy death sound
+            if(pDeathSound >= 0) animationSounds[pDeathSound].Play(); 
             enemyExplode.SetOrigin(enemyExplode.width/2, height / 2 + 20);
             AddChild(enemyExplode);
         }
@@ -167,7 +174,6 @@ public abstract class EnemyBehaviour:Entity
     //handles injured state of an enemy (for all enemies that DON'T have an injured animation)
     virtual protected void ManageInjured() { }
 
-
     //handles idle state of an enemy (for all enemies)
     virtual protected void ManageIdle() { }
 
@@ -181,7 +187,7 @@ public abstract class EnemyBehaviour:Entity
             ModifyState(State.INJURED);
             Hp -= bullet.Damage;
             bullet.SetCollided();
-            p.Exp += GiveExp;
+            p.EXP += giveExp;
         }
     }
 }

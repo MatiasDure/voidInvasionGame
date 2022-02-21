@@ -2,16 +2,22 @@
 using System.Drawing;
 using System.Collections.Generic;
 using GXPEngine;
+
+
+//------------------------HUD-----------------------------------//
+// Inherits from Canvas
+// Creates the hud
+// Displays the player's updated info on the screen
+//------------------------------------------------------------------------//
+
 public class HUD:Canvas
 {
     Player player;
     AnimationSprite lives;
     Sprite bulletCount, playerLvl;
     int currentLife;
-    int _gameCurrentLevel;
+    public int gameCurrentLevel;
     int framesToAnimate;
-
-    public int GameCurrentLevel { get => _gameCurrentLevel; set => _gameCurrentLevel = value; }  
 
     public HUD(Player pPlayer):base(300,200,false)
     {
@@ -49,7 +55,7 @@ public class HUD:Canvas
         graphics.Clear(Color.Empty);
         graphics.DrawString("X  "+player.AbilityCount, SystemFonts.DefaultFont, Brushes.AntiqueWhite, 18, 22);
         graphics.DrawString("LEVEL   " + player.Lvl, SystemFonts.DefaultFont, Brushes.BlanchedAlmond, 20, 45);
-        graphics.DrawString("LVL: " + GameCurrentLevel, SystemFonts.DefaultFont, Brushes.BlanchedAlmond, 180, 10);
+        graphics.DrawString("LVL: " + gameCurrentLevel, SystemFonts.DefaultFont, Brushes.BlanchedAlmond, 180, 10);
     }
 
 }

@@ -1,15 +1,27 @@
 ﻿using GXPEngine;
 using GXPEngine.Core;
 
+
+//------------------------Bullet-----------------------------------//
+// Inherits from Sprite
+// Creates bullet objects
+// Contains the logic for bullets
+// Used for both players and enemies
+//------------------------------------------------------------------------//
+
 public class Bullet:Sprite
 {
+    //particle effect
     AnimationSprite bulletExplode;
 
+    //bullet's properties
     float _velocityX, _velocityY;
     int _damage;
     GameObject _Owner;
 
     bool collided;
+
+    //public getters and protected/private setters
     public int Damage { get => _damage; protected set => _damage = value; }
     public float VelocityX { get => _velocityX; protected set => _velocityX = value; }
     public float VelocityY { get => _velocityY; protected set => _velocityY = value; }

@@ -1,6 +1,13 @@
 ﻿using GXPEngine;
 using TiledMapParser;
 
+
+//------------------------Button-----------------------------------//
+// Inherits from Sprite
+// Creates button objects
+// Used mainly to start or quit the game
+//------------------------------------------------------------------------//
+
 public class Button : Sprite
 {
     string target;

@@ -1,6 +1,12 @@
 ﻿using GXPEngine;
 using TiledMapParser;
 
+//------------------------StillEnemy-----------------------------------//
+// Inherits from EnemyBehaviour
+// Has declared the attack and idle states for the shooter enemies
+// Creates shooter enemies
+//------------------------------------------------------------------------//
+
 public class StillEnemy : EnemyBehaviour
 {
     string bulletImg;
@@ -9,6 +15,7 @@ public class StillEnemy : EnemyBehaviour
     {
         Initialize(obj);
     }
+
     void Update()
     {
         UpdateHealthUI();
@@ -16,26 +23,29 @@ public class StillEnemy : EnemyBehaviour
         ManageState(0,true,16,5);
         if(!isDead)entityImg.Animate(animationSpeed);   
     }
+
+    //Initialize shooter enemies
     protected override void Initialize(TiledObject obj = null)
     {
         bulletImg = "bullets/enemyBullet.png";
         animationSounds[1] = new Sound("sounds/ping.wav");
 
-        //configure from tiles
-        base.Initialize(obj);
+        base.Initialize(obj); //calls enemyBehaviour initialize method
         entityImg.SetXY(-5,-5);
         if (obj != null) shotCooldown = obj.GetIntProperty("cooldownMs", 2000);
     }
+
     protected override void ManageIdle()
-    {  
-        if ((DistanceTo(Target) < 200) && !ShotCoolDown())
+    {
+        if ((DistanceTo(target) < 200) && !ShotCoolDown())
         {
             ModifyState(State.ATTACK);
-            lastTimeShot = Time.time + shotCooldown;
+            UpdateLastTimeShot();
             return;
         }
         entityImg.SetCycle(8, 8); //idle 
     }
+
     protected override void ManageAttack()
     {
         if(entityImg.currentFrame == 7)
@@ -45,7 +55,7 @@ public class StillEnemy : EnemyBehaviour
             return;
         }
 
-        if (Target.x > x)
+        if (target.x > x)
         {
             entityImg.Mirror(true, false);
             SpeedX = SpeedX < 0 ? SpeedX * -1 : SpeedX;

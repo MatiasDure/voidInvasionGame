@@ -1,19 +1,26 @@
 ﻿using GXPEngine;
 using TiledMapParser;
 
+//------------------------ObstacleEnemy-----------------------------------//
+// Inherits from EnemyBehaviour
+// Has declared the attack, idle, and injured states for the obstacle enemies
+// Creates obstacle enemies
+//------------------------------------------------------------------------//
+
 public class ObstacleEnemy : EnemyBehaviour
 {
     bool flip;
     bool gotHit;
-    int lastTimeHit = 0;
+
     public ObstacleEnemy(TiledObject obj = null):base("objectImgs/saw.png", 8, 1)
     {
         Initialize(obj);
     }
 
+    //Initializes obstacle enemies
     protected override void Initialize(TiledObject obj = null)
     {
-        base.Initialize(obj);
+        base.Initialize(obj); //calls enemyBehaviour initialize method
         collider.isTrigger = false;
         if(obj != null) SpeedY = obj.GetFloatProperty("speedY",2f);
     }
@@ -28,17 +35,14 @@ public class ObstacleEnemy : EnemyBehaviour
 
     protected override void ManageIdle()
     {
-        if(gotHit)
-        {
-            entityImg.SetColor(255, 255, 255);
-            gotHit = false;
-        }
-        if(DistanceTo(Target) < 300)
+        RemoveAnim();
+        if(DistanceTo(target) < 300)
         {
             ModifyState(State.ATTACK);
             entityImg.SetCycle(0,8);
         }
     }
+
     protected override void ManageAttack()
     {
         if (y > game.height - height) flip = true;
@@ -47,19 +51,18 @@ public class ObstacleEnemy : EnemyBehaviour
         if (flip) y -= SpeedY;
         else y += SpeedY;
 
-        if (DistanceTo(Target) > 300)
+        if (DistanceTo(target) > 300)
         {
             ModifyState(State.IDLE);
             entityImg.SetCycle(1, 1);
         }
     }
+
     protected override void ManageInjured()
     {
         if(!gotHit)
         {
-            entityImg.SetColor(255, 0, 0);
-            gotHit = true;
-            lastTimeHit = Time.time + 200;
+            SetAnim();
         }
 
         if (lastTimeHit < Time.time)
@@ -69,16 +72,16 @@ public class ObstacleEnemy : EnemyBehaviour
         }
     }
 
-    void GotHit(int pDamage)
+    void SetAnim()
     {
-        Hp -= pDamage;
         entityImg.SetColor(255, 0, 0);
         lastTimeHit = Time.time + 200;
         gotHit = true;
     }
-    void GotHitAnimation()
+
+    void RemoveAnim()
     {
-        if (gotHit && lastTimeHit < Time.time)
+        if (gotHit)
         {
             entityImg.SetColor(255, 255, 255);
             gotHit = false;

@@ -5,7 +5,13 @@ using TiledMapParser;
 using System.IO;
 using Newtonsoft.Json.Linq;
 
-public class Player : Entity //Inherits from Entity class which was created to avoid code duplication between the Enemy and Player class
+//------------------------Player-----------------------------------//
+// Inherits from Entity
+// Creates player objects
+// Contains methods and variables for player's mechanics
+//------------------------------------------------------------------------//
+
+public class Player : Entity 
 {
     //json file path
     const string jsonPath = @"jsonFiles\PlayerSave.json"; 
@@ -16,8 +22,8 @@ public class Player : Entity //Inherits from Entity class which was created to a
 
     //player attributes
     int _abilityCount;
-    int _EXP;
     int _LVL;
+    public int EXP;
     float movementSpeed;
     float velocityY;
     string weakAbility, normalAbility, strongAbility;
@@ -25,13 +31,6 @@ public class Player : Entity //Inherits from Entity class which was created to a
     //starting positions when player falls to his death
     readonly float startingPositionX = 50;
     readonly float startingPositionY = 200;
-
-    //set cooldown for when mover enemy hits player
-    int lastTimeHit = 0;
-
-    public int Exp { get => _EXP; set => _EXP = value; }
-    public int AbilityCount { get => _abilityCount; private set => _abilityCount = value; }
-    public int Lvl { get => _LVL; private set => _LVL = value; }
 
     //player's actions over multiple frames
     bool isJumping, isFalling;
@@ -47,6 +46,10 @@ public class Player : Entity //Inherits from Entity class which was created to a
     int shootFrame = 0;
     string currentAbilityPath = "";
     Sound currentAbilitySound = null;
+
+    //getters and private setters
+    public int AbilityCount { get => _abilityCount; private set => _abilityCount = value; }
+    public int Lvl { get => _LVL; private set => _LVL = value; }
 
     public Player(TiledObject obj = null) : base("objectImgs/spritesheetHero.png",9,13)
     {
@@ -181,7 +184,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
             if (pShotSound != null) pShotSound.Play();
             parent.AddChild(new Bullet(pImgPath, this, Damage, mirror ? -SpeedX : SpeedX,0));
             _abilityCount--;
-            lastTimeShot = Time.time + shotCooldown; //sets cooldown
+            UpdateLastTimeShot();
             Damage = 0;
             currentAbilityPath = "";
         }
@@ -257,7 +260,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
     }
     protected override void CheckStatus()
     {
-        Lvl = Exp / 4;
+        Lvl = EXP / 4;
 
         if (Hp <= 0 && !isDead)
         {
@@ -343,7 +346,7 @@ public class Player : Entity //Inherits from Entity class which was created to a
         try
         {
             //attributes that change throughout game
-            playerJson.GetValue("EXP").Replace(Exp);
+            playerJson.GetValue("EXP").Replace(EXP);
             playerJson.GetValue("LVL").Replace(Lvl);
             playerJson.GetValue("abilityCount").Replace(AbilityCount);
 
@@ -357,12 +360,12 @@ public class Player : Entity //Inherits from Entity class which was created to a
     {
         try
         {
-            //using setters
+            //using private setters
             AbilityCount = (int)playerJson["abilityCount"];
-            Exp = (int)playerJson["EXP"];
             Lvl = (int)playerJson["LVL"];
 
             //not using setters
+            EXP = (int)playerJson["EXP"];
             movementSpeed = (float)playerJson["movementSpeed"];
             jumpForce = (float)playerJson["jumpForce"];
             gravity = (float)playerJson["gravity"];

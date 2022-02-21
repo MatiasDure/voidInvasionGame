@@ -1,10 +1,18 @@
 ﻿using GXPEngine;
 using TiledMapParser;
 
+
+//------------------------Gate-----------------------------------//
+// Inherits from Sprite to use a white hitbox image
+// Contains an AnimationSprite to create the portal animation
+// Creates Gate objects
+// Contains a target variable which points to the next fileName which has to be loaded
+// Used to travel between levels
+//------------------------------------------------------------------------//
+
 public class Gate:Sprite
 {
-    string _target;
-    string Target { get => _target; set => _target = value; }
+    string target;
 
     AnimationSprite gateAnimation;
 
@@ -24,7 +32,7 @@ public class Gate:Sprite
         collider.isTrigger = true;
         if(obj != null)
         {
-            Target = obj.GetStringProperty("target","tiledMaps/mainMenu.tmx");
+            target = obj.GetStringProperty("target","tiledMaps/mainMenu.tmx");
         }
     }
 
@@ -38,7 +46,7 @@ public class Gate:Sprite
         if (other is Player p)
         {
             p.Save(); 
-            ((MyGame)game).LoadLevel(Target);
+            ((MyGame)game).LoadLevel(target);
         } 
     }
 }

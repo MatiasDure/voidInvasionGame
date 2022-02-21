@@ -1,5 +1,12 @@
 ﻿using GXPEngine;
 using TiledMapParser;
+
+//------------------------Collectable-----------------------------------//
+// Inherits from AnimationSprite
+// Creates collectable objects
+// Used to give bullets to the player
+//------------------------------------------------------------------------//
+
 public class Collectable:AnimationSprite
 {
     const float ANIMATION_SPEED = 0.4f;
@@ -19,6 +26,7 @@ public class Collectable:AnimationSprite
         if(currentFrame == 5) LateDestroy();
         Animate(ANIMATION_SPEED);
     }
+
     /// <summary>
     /// When this method is called it sets the collected animation and the grabbed variable to true.
     /// </summary>

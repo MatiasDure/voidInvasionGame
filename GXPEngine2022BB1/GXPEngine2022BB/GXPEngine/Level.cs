@@ -1,6 +1,15 @@
 ﻿using System;
 using GXPEngine;
 using TiledMapParser;
+
+
+//------------------------Level-----------------------------------//
+// Inherits from GameObject
+// Creates level instances
+// Can only exist one at a time
+// Used to create the whole level structure and includes all objects
+//------------------------------------------------------------------------//
+
 public class Level: GameObject
 {
     String currentLevelName;
@@ -110,8 +119,11 @@ public class Level: GameObject
         if (currentLevelName != "tiledMaps/mainMenu.tmx")
         {
             player = FindObjectOfType<Player>();
-            CreateHUD(player);
-            AssignTargetToEnemies(player);
+            if(player != null)
+            {
+                CreateHUD(player);
+                AssignTargetToEnemies(player);
+            }   
         }
     }
 
@@ -138,7 +150,7 @@ public class Level: GameObject
     {
         if (player == null) return;
         hud = new HUD(pPlayer);
-        hud.GameCurrentLevel = currentLvl;
+        hud.gameCurrentLevel = currentLvl;
         game.AddChild(hud);
     }
 
@@ -147,7 +159,7 @@ public class Level: GameObject
         EnemyBehaviour[] enemies = FindObjectsOfType<EnemyBehaviour>();
         foreach (EnemyBehaviour enemy in enemies)
         {
-            enemy.Target = player;
+            enemy.target = player;
         }
     }
 

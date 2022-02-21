@@ -1,6 +1,13 @@
 ﻿using GXPEngine;
 using TiledMapParser;
 
+//------------------------Entity-----------------------------------//
+// Inherits from Sprite
+// Contains the methods and variables needed for every entity in the game
+// Created to reduce code repetition between enemies and player
+// Can only be inherited
+//------------------------------------------------------------------------//
+
 //class for player and enemy to inherit to avoid code repetition
 public abstract class Entity : Sprite
 {
@@ -11,11 +18,13 @@ public abstract class Entity : Sprite
     int _damage;
     float _speedX;
     float _speedY;
+    int lastTimeShot;
+    protected int lastTimeHit;
     protected int shotCooldown;
-    protected int lastTimeShot;
     protected float animationSpeed;
 
-    public int Hp { get => _hp; set => _hp = value; }
+    //public getters, protected setters
+    public int Hp { get => _hp; protected set => _hp = value; }
     public int Damage { get => _damage; protected set => _damage = value; }
     public float SpeedX { get => _speedX; protected set => _speedX = value; }
     public float SpeedY { get => _speedY; protected set => _speedY = value; }
@@ -31,12 +40,18 @@ public abstract class Entity : Sprite
         collider.isTrigger = true;
     }
 
+    protected void UpdateLastTimeShot()
+    {
+        lastTimeShot = Time.time + shotCooldown; //sets cooldown
+    }
+
     virtual protected bool ShotCoolDown()
     {
         //returns false if theres no need for cooldown
         if (Time.time > lastTimeShot) return false;
         return true;
     }
+
     virtual protected void Death() { LateDestroy(); }
     virtual protected void Shoot(GameObject pOwner,string imgPath, int pShootFrame=0, Sound pShotSound = null) { }
     virtual protected void CheckStatus() { }

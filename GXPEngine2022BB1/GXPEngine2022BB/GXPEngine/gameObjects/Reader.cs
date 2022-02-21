@@ -2,6 +2,14 @@
 using TiledMapParser;
 using System.Drawing;
 
+
+//------------------------Reader-----------------------------------//
+// Inherits from Sprite
+// Create reader board objects
+// Only active while colliding with player 
+// Used to instruct users about the game
+//------------------------------------------------------------------------//
+
 public class Reader : Sprite
 {
     string text, text2;
